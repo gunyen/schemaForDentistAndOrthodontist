@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!--Developed by John L Nguyen-->
+<head>
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="sesameSchema.css">
+<title>Meet The Team Schema</title>
+</head>
+<body>
+
+<!--Schema Suite Navigation-->
+<ul class="nav">
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/practiceSchema.html">Practice</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/serviceSchema.html">Services</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/reviewSchema.html">Testimonials</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/doctorSchema.html">Doctor</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/meetTheTeamSchema.html" style="font-weight: bold; color: blue;">Meet The Team</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/imageSchema.html">Images</a></li>
+</ul>
+<div class="row">
+	<div class="col-sm container">
+	
+		<!--Form to input information to be translated into JSON-LD schema-->
+		<table>
+			<tr>
+				<th>Team Member Schema</th>
+			</tr>
+			<tr>
+				<td>Name:</td>
+				<td><input type="text" id="name" autocomplete="off" placeholder="Enter Name of Team Member" size="45"></td>
+			</tr>
+			<tr>
+				<td>Job Title:</td>
+				<td><input type="text" id="jobtitle" autocomplete="off" placeholder="Enter Job Title of Team Member" size="45"></td>
+			</tr>
+			<tr>
+				<td>Description:</td>
+				<td><textarea  id="description" rows="4" cols="47" autocomplete="off" placeholder="Enter Member Information"></textarea></td>
+			</tr>
+		</table>
+		
+		</br>
+		<!---->
+		<button onclick="teamMember()">Add Member</button> <button onclick="teamMemberRem()">Remove Member</button></br>
+		
+		<!---->
+		<strong>Select:</strong> <span style="color: #007bff;" onclick="select(id);">Schema</span></br>
+		<a href="https://search.google.com/structured-data/testing-tool">JSON-LD Validator</a>(F5/Refresh to clear form)
+	</div>
+	<div id="schema" onclick="select(id);" class="col-sm container">
+	
+		<!--Generated JSON-LD Schema-->
+		<p>
+		&lt;script type="application/ld+json"&gt;</br>
+		{</br>
+		&nbsp;&nbsp;&nbsp;"@context": {</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"@vocab": "https://schema.org/"</br>
+		&nbsp;&nbsp;&nbsp;},</br>
+		&nbsp;&nbsp;&nbsp;"@graph": [<span id="teammember"></span>]</br>
+		}</br>
+		&lt;/script&gt;
+		</p>
+	</div>
+</div>
+<script>
+var memAdd = [];
+//
+function teamMember() {
+	memAdd.push("{</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;&commat;type&quot;: &quot;Person&quot;,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;" +
+		document.getElementById('name').value.toString() +
+		"&quot;,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;jobTitle&quot;: [" +
+		document.getElementById('jobtitle').value.toString() +
+		"],</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;description&quot;: &quot;" +
+		document.getElementById('description').value.toString() +
+		"&quot;</br>&nbsp;&nbsp;&nbsp;}");
+	document.getElementById('teammember').innerHTML = memAdd;
+	
+	document.getElementById('name').value = '';
+	document.getElementById('jobtitle').value = '';
+	document.getElementById('description').value = '';
+	return;
+}
+
+//
+function teamMemberRem() {
+	memAdd.pop();
+	document.getElementById('teammember').innerHTML = memAdd;
+	return;
+}
+
+//
+function select(id) {
+	window.getSelection()
+	.selectAllChildren(
+		document.getElementById("schema") 
+	);
+}
+</script>
+</body>
+</html>

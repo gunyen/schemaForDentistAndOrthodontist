@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<!--Developed by John L Nguyen-->
+<head>
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="sesameSchema.css">
+<title>Doctor Schema</title>
+</head>
+<body>
+
+<!--Schema Suite Navigation-->
+<ul class="nav">
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/practiceSchema.html">Practice</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/serviceSchema.html">Services</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/reviewSchema.html">Testimonials</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/doctorSchema.html" style="font-weight: bold; color: blue;">Doctor</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/meetTheTeamSchema.html">Meet The Team</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/imageSchema.html">Images</a></li>
+</ul>
+<div class="row">
+	<div class="col-sm container">
+	
+		<!--Form to input information to be translated into JSON-LD schema-->
+		<table>
+			<tr>
+				<th>Doctor Schema</th>
+			</tr>
+			<tr>
+				<td>First Name: </td>
+				<td><input type="text" id="firstName" autocomplete="off" placeholder="Enter First Name" size="45" onkeyup="firstNamePress()"></td>
+			</tr>
+			<tr>
+				<td>Last Name: </td>
+				<td><input type="text" id="lastName" autocomplete="off" placeholder="Enter Last Name" size="45" onkeyup="lastNamePress()"></td>
+			</tr>
+			<tr>
+				<td valign="top">Job Title: </td>
+				<td>
+				<input type="radio" name="job" value="Dentist" id="dentist" onclick="specialty()">Dentist 
+				&nbsp;<input type="radio" name="job" value="Orthodontist" id="orthodontist" onclick="specialty()">Orthodontist 
+				&nbsp;<input type="radio" name="job" value="Oral and Maxillofacial Surgeon" id="oamsurg" onclick="specialty()">Oral and Maxillofacial Surgeon 
+				&nbsp;<input type="radio" name="job" value="Periodontist" id="periodontist" onclick="specialty()">Periodontist </br>
+				<input type="radio" name="job" value="Prosthodontist" id="prosthodontist" onclick="specialty()">Prosthodontist 
+				&nbsp;<input type="radio" name="job" value="Endodontist" id="endodontist" onclick="specialty()">Endodontist 
+				&nbsp;<input type="radio" name="job" value="Oral Pathologist" id="pathologist" onclick="specialty()">Oral Pathologist 
+				&nbsp;<input type="radio" name="job" value="Oral Radiologist" id="radiologist" onclick="specialty()">Oral Radiologist 
+				&nbsp;<input type="radio" name="job" value="Pediatric Dentist" id="pedo" onclick="specialty()">Pediatric Dentist
+				</td>
+			</tr>
+			<tr>
+				<td valign="top">Doctor Description: </td>
+				<td><textarea id="drDescription" rows="4" cols="47" autocomplete="off" placeholder="Enter Doctor Information" size="45" onkeyup="descNamePress()"></textarea></br></td>
+			</tr>
+			<tr>
+				<td>Award(s):</td>
+				<td><input type="text" id="awards" size="45" placeholder="Awards Earned(Enter = Add | Delete = Take)"></td>
+			</tr>
+			<tr>
+				<td></br></td>
+			</tr>
+			<tr>
+				<th align="left">College or University</th>
+				<td><button style="margin: 0 auto; padding: 0; width: 26px" onclick="educationAdd()">+</button>&nbsp;<button style="margin: 0 auto; padding: 0; width: 26px" onclick="educationTake()">-</button>(enter name and link before adding)
+			</tr>
+			<tr>
+				<td>Name: </td>
+				<td><input type="text" id="eduName" autocomplete="off" placeholder="Enter College or Uni Name" size="45"></td>
+			</tr>
+			<tr>
+				<td>Link: </td>
+				<td><input type="text" id="eduLink" autocomplete="off" placeholder="Enter College or Uni Link" size="45"></td>
+			</tr>
+			<tr>
+				<td></br></td>
+			</tr>
+			<tr>
+				<th align="left">Affiliation</th>
+				<td><button style="margin: 0 auto; padding: 0; width: 26px" onclick="organizationAdd()">+</button>&nbsp;<button style="margin: 0 auto; padding: 0; width: 26px" onclick="organizationTake()">-</button>(enter name and link before adding)</td>
+			</tr>
+			<tr>
+				<td>Name: </td>
+				<td><input type="text" id="orgName" autocomplete="off" placeholder="Enter Affiliate Name" size="45"></td>
+			</tr>
+			<tr>
+				<td>Link: </td>
+				<td><input type="text" id="orgLink" autocomplete="off" placeholder="Enter Affiliate Link" size="45"></td>
+			</tr>		
+		</table>
+		
+		</br>
+		<!---->
+		<button onclick="none()">Clear</button></br>
+		<strong>Select:</strong> <span style="color: #007bff;" onclick="select(id);">Schema</span></br>
+		<a href="https://search.google.com/structured-data/testing-tool">JSON-LD Validator</a>(F5/Refresh to clear form)
+		
+	</div>
+	<div id="schema" onclick="select(id);" class="col-sm container">
+	
+		<!--Generated JSON-LD Schema-->
+		<p>
+			&lt;script type="application/ld+json"&gt;</br>
+			{</br>
+			&nbsp;&nbsp;&nbsp;"@context": {</br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"@vocab": "https://schema.org/"</br>
+			&nbsp;&nbsp;&nbsp;},</br>
+			&nbsp;&nbsp;&nbsp;"@graph": [{</br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"@type": "Person",</br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"honorificPrefix": "Dr.",</br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"givenName": "<span id="fName"></span>",</br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"familyName": "<span id="lName"></span>",</br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"jobTitle": "<span id="drType"></span>",</br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"award": [<span id="award"></span>],</br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"description": "<span id="description"></span>",</br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"alumniOf": [<span id="eduAdd"></span>],</br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"memberOf": [<span id="orgAdd"></span>]</br>
+			&nbsp;&nbsp;&nbsp;}]</br>
+			}</br>
+			&lt;/script&gt;
+		</p>
+	</div>
+</div>
+<script>
+//
+function firstNamePress(){
+var first = document.getElementById("firstName").value.toString();
+document.getElementById("fName").innerHTML = first;
+return;
+}
+
+//
+function lastNamePress(){
+	var last = document.getElementById("lastName").value.toString();
+	document.getElementById("lName").innerHTML = last;
+	return;
+}
+
+//
+function descNamePress(){
+	var desc = document.getElementById("drDescription").value.toString();
+	document.getElementById("description").innerHTML = desc;
+	return;
+}
+
+//
+function none(){
+	document.getElementById('firstName').value = '';
+	document.getElementById('lastName').value = '';
+	document.getElementById('drDescription').value = '';
+}
+
+//
+function specialty(){
+	if (document.getElementById("dentist").checked == true){
+		document.getElementById("drType").innerHTML = document.getElementById("dentist").value;
+	}
+	else if (document.getElementById("orthodontist").checked == true){
+		document.getElementById("drType").innerHTML = document.getElementById("orthodontist").value;
+	}
+	else if (document.getElementById("oamsurg").checked == true){
+		document.getElementById("drType").innerHTML = document.getElementById("oamsurg").value;
+	}
+	else if (document.getElementById("periodontist").checked == true){
+		document.getElementById("drType").innerHTML = document.getElementById("periodontist").value;
+	}
+	else if (document.getElementById("prosthodontist").checked == true){
+		document.getElementById("drType").innerHTML = document.getElementById("prosthodontist").value;
+	}
+	else if (document.getElementById("endodontist").checked == true){
+		document.getElementById("drType").innerHTML = document.getElementById("endodontist").value;
+	}
+	else if (document.getElementById("pathologist").checked == true){
+		document.getElementById("drType").innerHTML = document.getElementById("pathologist").value;
+	}
+	else if (document.getElementById("radiologist").checked == true){
+		document.getElementById("drType").innerHTML = document.getElementById("radiologist").value;
+	}
+	else if (document.getElementById("pedo").checked == true){
+		document.getElementById("drType").innerHTML = document.getElementById("pedo").value;
+	}
+}
+
+var awardAdd = [];
+var input = document.getElementById("awards");
+//
+input.addEventListener("keyup", function(event) {
+	if (event.keyCode === 13) {
+		event.preventDefault();
+		awardAdd.push("&quot;" + document.getElementById('awards').value.toString() + "&quot;");
+		document.getElementById('award').innerHTML = awardAdd;
+		document.getElementById('awards').value = "";
+	}
+	else if (event.keyCode === 46) {
+		event.preventDefault();
+		awardAdd.pop();
+		document.getElementById("award").innerHTML = awardAdd;
+	}
+});
+
+//
+function takeAward() {
+	awardAdd.pop();
+	document.getElementById('award').innerHTML = awardAdd;
+}
+
+var edAdd = [];
+//
+function educationAdd(){
+	edAdd.push("{</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;@type&quot;: &quot;CollegeOrUniversity&quot;,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;" +
+		document.getElementById("eduName").value.toString() +
+		"&quot;,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;sameAs&quot;: &quot;" +
+		document.getElementById("eduLink").value.toString() +
+		"&quot;</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}");
+	document.getElementById("eduAdd").innerHTML = edAdd;
+	document.getElementById("eduName").value = '';
+	document.getElementById("eduLink").value = '';
+	return;
+}
+
+//
+function educationTake() {
+	edAdd.pop();
+    document.getElementById("eduAdd").innerHTML = edAdd;
+	return;
+}
+
+var orAdd = [];
+//
+function organizationAdd(){
+	orAdd.push("{</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;@type&quot;: &quot;Organization&quot;,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;" +
+		document.getElementById("orgName").value.toString() +
+		"&quot;,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;sameAs&quot;: &quot;" +
+		document.getElementById("orgLink").value.toString() +
+		"&quot;</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}");
+	document.getElementById("orgAdd").innerHTML = orAdd;
+	document.getElementById("orgName").value = '';
+	document.getElementById("orgLink").value = '';
+	return;
+}
+
+//
+function organizationTake() {
+	orAdd.pop();
+	document.getElementById("orgAdd").innerHTML = orAdd;
+	return;
+}
+
+//Selects+highlights everthing within a designated container
+function select(id) {
+	window.getSelection()
+	.selectAllChildren(
+		document.getElementById("schema") 
+	);
+}
+</script>
+</body>
+</html>

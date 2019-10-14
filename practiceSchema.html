@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<!--Developed by John L Nguyen-->
+<head>
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="sesameSchema.css">
+<title>Practice Schema</title>
+</head>
+<body>
+
+<!--Schema Suite Navigation-->
+<ul class="nav">
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/practiceSchema.html" style="font-weight: bold; color: blue;">Practice</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/serviceSchema.html">Services</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/reviewSchema.html">Testimonials</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/doctorSchema.html">Doctor</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/meetTheTeamSchema.html">Meet The Team</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/imageSchema.html">Images</a></li>
+</ul>
+<div class="row">
+	<div class="col container">
+	
+		<!--Form to input information to be translated into JSON-LD schema-->
+		<table>
+			<tr>
+				<th>Practice Schema:&nbsp;&nbsp;&nbsp;</th>
+				<td><input type="checkbox" id="dentist" value="Dentist" onclick="dentist();">Dentist?</td>
+			</tr>
+			<tr>
+				<td>Location URL:</td>
+				<td><input type="text" id="locURL" size="45" autocomplete="off" placeholder="Enter Office Location Link"></td>
+			</tr>
+			<tr>
+				<td>Logo Link:</td>
+				<td><input type="text" id="logoLink" size="45" autocomplete="off" placeholder="Enter Image Link to Practice Logo"></td>
+			</tr>
+			<tr>
+				<td>Practice Name:</td>
+				<td><input type="text" id="practName" size="45" autocomplete="off" placeholder="Enter Name of Practice"></td>
+			</tr>
+			<tr>
+				<td>Practice URL:</td>
+				<td><input type="text" id="practURL" size="45" autocomplete="off" placeholder="Enter Website Link"></td>
+			</tr>
+			<tr>
+				<td>Social Media:</td>
+				<td><input type="text" id="socialMedia" size="45" autocomplete="off" placeholder="&quot;Enter Social Media Links&quot;,&quot;Like This&quot;"></td>
+			</tr>
+			<tr>
+				<td>Office Number:</td>
+				<td><input type="text" id="offNumber" size="45" autocomplete="off" placeholder="Enter Office Phone Number"></td>
+			</tr>
+			<tr>
+				<td>Practice Email:</td>
+				<td><input type="text" id="practEmail" size="45" autocomplete="off" placeholder="Enter Practice Email Address"></td>
+			</tr>
+			<tr>
+				<td>GMB Map link:</td>
+				<td><input type="text" id="gmbMap" size="45" autocomplete="off" placeholder="Enter Link to Practice GMB"></td>
+			</tr>
+			<tr>
+			<td><br /></td>
+			</tr>
+			<tr>
+				<td>Street Address:</td>
+				<td><input type="text" id="streetAddress" size="45" autocomplete="off" placeholder="400 Broad St"></td>
+			</tr>
+			<tr>
+				<td>City:</td>
+				<td><input type="text" id="city" size="45" autocomplete="off" placeholder="Seattle"></td>
+			</tr>
+			<tr>
+				<td>Region/State:</td>
+				<td><input type="text" id="region" size="45" autocomplete="off" placeholder="WA"></td>
+			</tr>
+			<tr>
+				<td>Postal Code:</td>
+				<td><input type="text" id="postalCode" size="45" autocomplete="off" placeholder="98109"></td>
+			</tr>
+			<tr>
+				<td>Country:</td>
+				<td><input type="text" id="country" size="45" autocomplete="off" placeholder="United States"></td>
+			</tr>
+			<tr>
+				<td><br /></td>
+			</tr>
+			<tr>
+				<td>Latitude:</td>
+				<td><input type="text" id="latitude" size="45" autocomplete="off" placeholder="47.621519"></td>
+			</tr>
+			<tr>
+				<td>Longitude:</td>
+				<td><input type="text" id="longitude" size="45" autocomplete="off" placeholder="-122.349149"></td>
+			</tr>
+			<tr>
+				<td><br /></td>
+			</tr>
+			<tr>
+				<td>Day Of Week:</td>
+				<td><input type="text" id="day" size="45" autocomplete="off" placeholder="&quot;monday&quot;,&quot;tuesday&quot;,&quot;wednesday&quot;..."></td>
+			</tr>
+			<tr>
+				<td>Open/Close Times:</td>
+				<td>
+				<input type="text" id="dayOpen" size="15" autocomplete="off" placeholder="Open Military:Time">
+				<input type="text" id="dayClose" size="15" autocomplete="off" placeholder="Close Military:Time">
+				<button style="margin: 0 auto; padding: 0; width: 26px" onclick="dayOfWeek()">+</button>
+				<button style="margin: 0 auto; padding: 0; width: 26px" onclick="dayOfWeekPop()">-</button></td>
+			</tr>
+			<tr>
+				<td valign="top">Hours List:</td>
+				<td><span id="item"></span></td>
+			</tr>
+		</table>
+		
+		</br>
+		<!---->
+		<button onclick="addTheSchema()">Add</button>&nbsp;<button onclick="takeTheSchema()">Take</button></br>
+		
+		<!---->
+		<strong>Select:</strong> <span style="color: #007bff;" onclick="select(id);">Schema</span></br>
+		<a href="https://search.google.com/structured-data/testing-tool">JSON-LD Validator</a>(F5/Refresh to clear form)
+	</div>
+	<div id="schema" onclick="select(id);" class="col container">
+	
+		<!--Generated JSON-LD Schema-->
+		&lt;script type="application/ld+json"&gt;</br>
+		{</br>
+		&nbsp;&nbsp;&nbsp;"@context": {</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"@vocab": "https://schema.org"</br>
+		&nbsp;&nbsp;&nbsp;},</br>
+		&nbsp;&nbsp;&nbsp;"@graph": [<span id="theSchema"></span>]</br>
+		}</br>
+		&lt;/script&gt;
+		<span id="dayOfWeek"></span>
+	</div>
+</div>
+<script>
+var addSchema = [];
+//
+function addTheSchema(){
+	if(document.getElementById('dentist').checked == true){
+		document.getElementById('dentist').value = ", &quot;Dentist&quot;";
+	} else if(document.getElementById('dentist').checked == false) {
+		document.getElementById('dentist').value = "";
+	}
+	
+	addSchema.push("{</br>" +
+		"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;@type&quot;: [&quot;LocalBusiness&quot;, &quot;MedicalBusiness&quot;" + 
+		document.getElementById('dentist').value + 
+		"],</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;@id&quot;: &quot;" + 
+		document.getElementById('locURL').value.toString() + 
+		"&quot;,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;image&quot;: &quot;" + 
+		document.getElementById('logoLink').value.toString() + 
+		"&quot;,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;" + 
+		document.getElementById('practName').value.toString() + 
+		"&quot;,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;url&quot;: &quot;" + 
+		document.getElementById('practURL').value.toString() + 
+		"&quot;,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;sameAs&quot;: [" + 
+		document.getElementById('socialMedia').value.toString() + 
+		"],</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;telephone&quot;: &quot;" + 
+		document.getElementById('offNumber').value.toString() + 
+		"&quot;,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;email&quot;: &quot;" + 
+		document.getElementById('practEmail').value.toString() + 
+		"&quot;,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;hasMap&quot;: &quot;" + 
+		document.getElementById('gmbMap').value.toString() + 
+		"&quot;,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;address&quot;: {</br>" +
+		"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;@type&quot;: &quot;PostalAddress&quot;,</br>" +
+		"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;streetAddress&quot;: &quot;" + 
+		document.getElementById('streetAddress').value.toString() + 
+		"&quot;,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;addressLocality&quot;: &quot;" + 
+		document.getElementById('city').value.toString() + 
+		"&quot;,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;addressRegion&quot;: &quot;" + 
+		document.getElementById('region').value.toString() + 
+		"&quot;,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;postalCode&quot;: &quot;" + 
+		document.getElementById('postalCode').value.toString() + 
+		"&quot;,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;addressCountry&quot;: &quot;" + 
+		document.getElementById('country').value.toString() + 
+		"&quot;</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</br>" +
+		"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;geo&quot;: {</br>" +
+		"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;@type&quot;: &quot;GeoCoordinates&quot;,</br>" +
+		"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;latitude&quot;: &quot;" + 
+		document.getElementById('latitude').value.toString() + 
+		"&quot;,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;longitude&quot;: &quot;" + 
+		document.getElementById('longitude').value.toString() + 
+		"&quot;</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;openingHoursSpecification&quot;: [" + 
+		document.getElementById('dayOfWeek').value.toString() +
+		"]</br>&nbsp;&nbsp;&nbsp;}");
+	document.getElementById('theSchema').innerHTML = addSchema;
+	document.getElementById('locURL').value = "";
+	document.getElementById('offNumber').value = "";
+	document.getElementById('gmbMap').value = "";
+	document.getElementById('streetAddress').value = "";
+	document.getElementById('city').value = "";
+	document.getElementById('region').value = "";
+	document.getElementById('postalCode').value = "";
+	document.getElementById('latitude').value = "";
+	document.getElementById('longitude').value = "";
+	dow = [];
+	items = [];
+	document.getElementById('dayOfWeek').value = dow;
+	document.getElementById('item').innerHTML = items;
+	return;
+}
+
+//
+function takeTheSchema() {
+	addSchema.pop();
+	document.getElementById('theSchema').innerHTML = addSchema;
+	return;
+}
+
+var dow = [];
+var items = [];
+document.getElementById('dayOfWeek').value = "";
+//
+function dayOfWeek() {
+	dow.push("{</br>" +
+		"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;@type&quot;: &quot;OpeningHoursSpecification&quot;,</br>" +
+		"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;dayOfWeek&quot;: [" +
+		document.getElementById('day').value +
+		"],</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;opens&quot;: &quot;" +
+		document.getElementById('dayOpen').value +
+		"&quot;,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;closes&quot;: &quot;" +
+		document.getElementById('dayClose').value +
+		"&quot;</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}");
+		document.getElementById('dayOfWeek').value = dow;
+		items.push(document.getElementById('day').value +
+		"</br>" +
+		document.getElementById('dayOpen').value +
+		" | " +
+		document.getElementById('dayClose').value + "</br>");
+	document.getElementById('item').innerHTML = items.join('');
+	document.getElementById('day').value = "";
+	document.getElementById('dayOpen').value = "";
+	document.getElementById('dayClose').value = "";
+}
+
+//
+function dayOfWeekPop() {
+	dow.pop();
+	items.pop();
+	document.getElementById('dayOfWeek').value = dow;
+	document.getElementById('item').innerHTML = items;
+}
+
+//
+function select(id) {
+	window.getSelection()
+	.selectAllChildren(
+		document.getElementById("schema") 
+	);
+}
+</script>
+</body>
+</html>

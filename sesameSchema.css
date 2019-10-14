@@ -1,0 +1,22 @@
+body {
+margin: 0 auto;
+padding: 40px;
+}
+.container {
+margin: 0 auto;
+padding: 25px 25px;
+}
+.nav ul{
+float: left;
+display: inline-block;
+decoration: none;
+}
+.nav li{
+padding: 0 20px 0 0;
+color: #007bff;
+font-size: 20px;
+}
+.nav a:hover{
+color: blue;
+text-decoration: none;
+}

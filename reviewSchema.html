@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!--Developed by John L Nguyen-->
+<head>
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="sesameSchema.css">
+<title>Testimonial Schema</title>
+</head>
+<body>
+
+<!--Schema Suite Navigation-->
+<ul class="nav">
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/practiceSchema.html">Practice</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/serviceSchema.html">Services</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/reviewSchema.html" style="font-weight: bold; color: blue;">Testimonials</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/doctorSchema.html">Doctor</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/meetTheTeamSchema.html">Meet The Team</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/imageSchema.html">Images</a></li>
+</ul>
+<div class="row">
+	<div class="col-sm container">
+	
+		<!--Form to input information to be translated into JSON-LD schema-->
+		<table>
+			<tr>
+				<th>Testimonial Schema&nbsp;&nbsp;&nbsp;</th>
+				<td><input id="dental" type="checkbox" value="Dentist" onclick="dentist()">Dentist?</td>
+			</tr>
+			<tr>
+				<td valign="top">Practice Name: &nbsp;</td>
+				<td><input type="text" id="practName" autocomplete="off" placeholder="Enter Practice Name" size="45" onkeyup="practNamePress()"></td>
+			</tr>
+			<tr>
+				<td valign="top">Image Links: </td>
+				<td><input type="text" id="imliName" autocomplete="off" placeholder="&quot;Image Link&quot;" size="45" onkeyup="linkNamePress()"></td>
+			</tr>
+			<tr>
+				<td></br></td>
+			</tr>
+			<tr>
+				<td valign="top">Reviewer: </td>
+				<td><input type="text" id="revName" autocomplete="off" placeholder="Enter Reviewers Name" size="45"></td>
+			</tr>
+			<tr>
+				<td valign="top">Review Body: </td>
+				<td><textarea id="revDesc" rows="4" cols="47" autocomplete="off" placeholder="Enter Review(do not add quotes)"></textarea></br></td>
+			</tr>
+		</table>
+		
+		</br>
+		<!---->
+		<button onclick="reviewAdd()">Add Review</button>&nbsp;<button onclick="reviewTake()">Remove Review</button></br>(enter name and link before adding)</br>
+		
+		<!---->
+		<strong>Select:</strong> <span style="color: #007bff;" onclick="select(id);">Schema</span> | <span style="color: #007bff;" onclick="selec(id);">Front End Code</span>
+		</br>
+		<a href="https://search.google.com/structured-data/testing-tool">JSON-LD Validator</a>(F5/Refresh to clear form)
+		</br></br>
+		
+		<!---->
+		<h2>Front End Test View</h2>
+		<p>If you&rsquo;d like to share some kind words and smiles, please ask our front desk staff for a comment card at your next appointment. We&rsquo;d love to hear about your experience!</p>
+		<hr />
+		<div>
+		<h2 id="prName"></h2>
+		<div>5 out of 5 <img src="/hub_sites/farrow-melissa/www/assets/uploads/images/stars.png" style="width: 70px; height: 14px;" /> based on <span id="counts"></span> user reviews.</div>
+		<span id="reveAdd"></span>
+		</div>
+		
+	</div>
+	<div id="schema" class="col-sm container"  onclick="select(id);">
+	
+		<!--Generated JSON-LD Schema-->
+		<p>
+		&lt;script type="application/ld+json"&gt;</br>
+		{</br>
+		&nbsp;&nbsp;&nbsp;"@context": {</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"@vocab": "https://schema.org/"</br>
+		&nbsp;&nbsp;&nbsp;},</br>
+		&nbsp;&nbsp;&nbsp;"@graph": [{</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"@type": ["LocalBusiness" , "MedicalBusiness"<span id="dentist"></span>],</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "<span id="pName"></span>",</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"image": [<span id="iName"></span>],</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"aggregateRating": {</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"@type": "AggregateRating",</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ratingValue": 5,</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"reviewCount": <span id="count"></span></br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</br>
+		&nbsp;&nbsp;&nbsp;},<span id="revAdd"></span>]</br>
+		}</br>
+		&lt/script&gt;
+		</p>
+		<span id="revAdd"></span>
+	</div>
+	<div id="frontEnd" class="col-sm container" onclick="selec(id);">
+	
+		<!--Generated Front End Code-->
+		&lt;p&gt;If you&rsquo;d like to share some kind words and smiles, please ask our front desk staff for a comment card at your next appointment. We&rsquo;d love to hear about your experience!&lt;/p&gt;</br>
+		&lt;hr /&gt;</br>
+		&lt;div&gt;</br>
+		&lt;h2&gt;<span id="praName"></span>&lt;/h2&gt;</br>
+		&lt;div&gt;5 out of 5 &lt;img src=&quot;/hub_sites/farrow-melissa/www/assets/uploads/images/stars.png&quot; style=&quot;width: 70px; height: 14px;&quot; /&gt; based on <span id="countss"></span> user reviews.&lt;/div&gt;&lt;/div&gt;</br>
+		<span id="reviAdd"></span>
+	</div>
+</div>
+<script>
+var add = [];
+document.getElementById('dentist').value = "";
+//
+function dentist() {
+	if (document.getElementById('dental').checked == true){
+		add.push(" , &quot;" + document.getElementById('dental').value.toString() + "&quot;");
+		document.getElementById('dentist').innerHTML = add;
+		document.getElementById('dentist').value = " , &quot;Dentist&quot;";
+	} else if (document.getElementById('dental').checked == false){
+		add.pop();
+		document.getElementById('dentist').innerHTML = add;
+		document.getElementById('dentist').value = "";
+	}
+}
+
+
+var x = 0;
+var rAdd = [];
+var reAdd = [];
+var reiAdd = [];
+//
+function practNamePress(){
+	var edun = document.getElementById("practName").value.toString();
+	document.getElementById("pName").innerHTML = edun;
+	document.getElementById("prName").innerHTML = edun;
+	document.getElementById("praName").innerHTML = edun;
+}
+
+//
+function linkNamePress(){
+	var edul = document.getElementById("imliName").value.toString();
+	document.getElementById("iName").innerHTML = edul;
+}
+
+//
+function reviewAdd(){
+	reiAdd.push("&lt;div&gt;</br>&lt;hr /&gt;</br>&lt;div&gt;By " +
+		document.getElementById("revName").value.toString() +
+		"&lt;/div&gt;</br>&lt;p&gt;5/5</br>&nbsp;&lt;img src='/hub_sites/farrow-melissa/www/assets/uploads/images/stars.png' style='width: 70px; height: 14px;' /&gt;&lt;/p&gt;&lt;p&gt;</br>&quot;" +
+		document.getElementById("revDesc").value.toString() +
+		"&quot;</br>&lt;br /&gt;&amp;nbsp;&lt;/p&gt;&lt;/div&gt;</br>");
+	document.getElementById("reviAdd").innerHTML = reiAdd.join("");
+	
+	reAdd.push("<div><hr /><div>By " + document.getElementById("revName").value.toString() +
+		"</div><p>5/5<img src='/hub_sites/farrow-melissa/www/assets/uploads/images/stars.png' style='width: 70px; height: 14px;' /></p>&quot;" +
+		document.getElementById("revDesc").value.toString() +
+		"&quot;</div>");	
+	document.getElementById("reveAdd").innerHTML = reAdd.join("");
+	
+	rAdd.push("{</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;@type&quot;: &quot;Review&quot;,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;itemReviewed&quot;: {</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;@type&quot;: [&quot;LocalBusiness&quot;, &quot;MedicalBusiness&quot;" +
+		document.getElementById('dentist').value +
+		"],</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;" +
+		document.getElementById("practName").value.toString() +
+		"&quot;,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;image&quot;: " +
+		document.getElementById("imliName").value.toString() +
+		"</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;author&quot;: {</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;@type&quot;: &quot;Person&quot;,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;" +
+		document.getElementById("revName").value.toString() +
+		"&quot;</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;reviewRating&quot;: {</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;@type&quot;: &quot;Rating&quot;,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;ratingValue&quot;: 5,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;worstRating&quot;: 1,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;bestRating&quot;: 5</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;reviewBody&quot;: &quot;" +
+		document.getElementById("revDesc").value.toString() +
+		"&quot;</br>&nbsp;&nbsp;&nbsp;}");
+	document.getElementById("revAdd").innerHTML = rAdd;
+	
+	document.getElementById("revName").value = '';
+	document.getElementById("revDesc").value = '';
+	
+	x++;
+	document.getElementById("count").innerHTML = x;
+	document.getElementById("counts").innerHTML = x;
+	document.getElementById("countss").innerHTML = x;
+	return;
+}
+
+//
+function reviewTake() {
+	rAdd.pop();
+	reAdd.pop();
+	reiAdd.pop();
+	document.getElementById("revAdd").innerHTML = rAdd;
+	document.getElementById("reveAdd").innerHTML = reAdd.join("");
+	document.getElementById("reviAdd").innerHTML = reiAdd.join("");
+	if (x !== 0){
+	x--;
+	document.getElementById("count").innerHTML = x;
+	document.getElementById("counts").innerHTML = x;
+	document.getElementById("countss").innerHTML = x;
+	}
+	return;
+}
+
+//
+function select(id) {
+	window.getSelection()
+	.selectAllChildren(
+		document.getElementById("schema") 
+	);
+}
+
+//
+function selec(id) {
+	window.getSelection()
+	.selectAllChildren(
+		document.getElementById("frontEnd") 
+	);
+}
+</script>
+</body>
+</html>

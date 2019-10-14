@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<!--Developed by John L Nguyen-->
+<head>
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="sesameSchema.css">
+<title>Service Schema</title>
+</head>
+<body>
+
+<!--Schema Suite Navigation-->
+<ul class="nav">
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/practiceSchema.html">Practice</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/serviceSchema.html" style="font-weight: bold; color: blue;">Services</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/reviewSchema.html">Testimonials</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/doctorSchema.html">Doctor</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/meetTheTeamSchema.html">Meet The Team</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/imageSchema.html">Images</a></li>
+</ul>
+<div class="row">
+	<div class="col-sm container">
+
+		<!--Form to input information to be translated into JSON-LD schema-->
+		<table>
+			<tr>
+				<th>Service Schema</th>
+				<td>(use site map)</td>
+			</tr>
+			<tr>
+				<td>Service Type:</td>
+				<td><input name= "service" type="radio" id="dental" value="Dentistry" onclick="servicing();"> Dental
+				<input name="service" type="radio" id="ortho" value="Orthodontics" onclick="servicing();"> Orthodontic</td>
+			<tr>
+			<tr>
+				<td>Practice Name:</td>
+				<td><input type="text" size="45" id="practName" onkeyup="practiceName();" placeholder="Enter Name of Practice" autocomplete="off"></td>
+			</tr>
+			<tr>
+				<td>Logo Link:</td>
+				<td><input type="text" size="45" id="logoLink" onkeyup="logoLink();" placeholder="Enter Link to Practice Logo" autocomplete="off"></td>
+			</tr>
+			<tr>
+				<td>State Name:</td>
+				<td><input type="text" size="45" id="state" onkeyup="stateName();" placeholder="Enter Full Name of State" autocomplete="off"></td>
+			</tr>
+			<tr>
+				<td></br></td>
+			</tr>
+			<tr>
+				<td>Service Catalog:</td>
+				<td><input type="text" size="36" id="serviceCatalog" placeholder="Enter the Main Catalog" autocomplete="off">
+				<button style="margin: 0 auto; padding: 0; width: 26px" onclick="catalog()">+</button>
+				<button style="margin: 0 auto; padding: 0; width: 26px" onclick="catalogPop()">-</button></td>
+			</tr>
+			<tr>
+				<td>Service Name:</td>
+				<td><input type="text" size="36" id="serviceName" placeholder="Enter Services within catalog" autocomplete="off">
+				<button style="margin: 0 auto; padding: 0; width: 26px" onclick="serve()">+</button>
+				<button style="margin: 0 auto; padding: 0; width: 26px" onclick="servePop()">-</button></td>
+			</tr>
+			<tr>
+				<td>Service URL:</td>
+				<td><input type="text" size="45" id="serviceURL" placeholder="Enter Link Services within catalog" autocomplete="off"></td>
+			</tr>
+			<tr>
+				<td valign="top">Item List(<span id="count"></span>):</td>
+				<td><span id="item"></span></td>
+			</tr>
+		</table>
+		<!--End-->
+
+		</br>
+		<!---->
+		<strong>Select:</strong> <span style="color: #007bff;" onclick="select(id);">Schema</span></br>
+		<a href="https://search.google.com/structured-data/testing-tool">JSON-LD Validator</a>(F5/Refresh to clear form)
+
+		</br>
+		<!---->
+		<span id="catName"></span>
+
+	</div>
+
+	<!---->
+	<div id="schema" onclick="select(id);" class="col-sm container">
+
+		<!--Generated JSON-LD Schema-->
+		<p>
+		&lt;script type="application/ld+json"&gt;</br>
+		{</br>
+		&nbsp;&nbsp;&nbsp;"@context": {</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"@vocab": "https://schema.org/"</br>
+		&nbsp;&nbsp;&nbsp;},</br>
+		&nbsp;&nbsp;&nbsp;"@type": "Service",</br>
+		&nbsp;&nbsp;&nbsp;"serviceType": "<span id="serviceType"></span>",</br>
+		&nbsp;&nbsp;&nbsp;"provider": {</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"@type": ["LocalBusiness","MedicalBusiness"<span id="dent"></span>],</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "<span id="practiceName"></span>",</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"image": "<span id="imageLink"></span>"</br>
+		&nbsp;&nbsp;&nbsp;},</br>
+		&nbsp;&nbsp;&nbsp;"areaServed": {</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"@type": "State",</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "<span id="stateName"></span>"</br>
+		&nbsp;&nbsp;&nbsp;},</br>
+		&nbsp;&nbsp;&nbsp;"hasOfferCatalog": {</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"@type": "OfferCatalog",</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "<span id="treatType"></span>",</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"itemListElement": [<span id="offerCat"></span>]</br>
+		&nbsp;&nbsp;&nbsp;}</br>
+		}</br>
+		&lt;/script&gt;
+
+		<!---->
+		<span id="offerings"></span>
+
+		</p>
+	</div>
+</div>
+<script>
+//
+function servicing(){
+	if(document.getElementById('dental').checked == true){
+		document.getElementById('serviceType').innerHTML = document.getElementById('dental').value;
+		document.getElementById('treatType').innerHTML = "Dental Treatment";
+		document.getElementById('dent').innerHTML = ",&quot;Dentist&quot;";
+	} else if(document.getElementById('ortho').checked == true){
+		document.getElementById('serviceType').innerHTML = document.getElementById('ortho').value;
+		document.getElementById('treatType').innerHTML = "Orthodontic Treatment";
+		document.getElementById('dent').innerHTML = "";
+	} else {
+		document.getElementById('serviceType').innerHTML = "";
+		document.getElementById('treatType').innerHTML = "";
+	}
+}
+
+//
+function practiceName(){
+	document.getElementById('practiceName').innerHTML = document.getElementById('practName').value.toString();
+}
+
+function logoLink(){
+	document.getElementById('imageLink').innerHTML = document.getElementById('logoLink').value.toString();
+}
+
+function stateName(){
+	document.getElementById('stateName').innerHTML = document.getElementById('state').value.toString();
+}
+
+var x = 0;
+var serviceCat = [];
+var service = [];
+var items = [];
+document.getElementById('offerings').value = "";
+
+//
+function catalog(){
+	serviceCat.push("</br>" +
+	"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</br>" +
+	"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;@type&quot;: &quot;OfferCatalog&quot;,</br>" +
+	"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;" +
+	document.getElementById('serviceCatalog').value.toString() +
+	"&quot;,</br>" +
+	"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;itemListElement&quot;: [" +
+	document.getElementById('offerings').value.toString() +
+	"]}");
+	
+	document.getElementById('offerCat').innerHTML = serviceCat;
+	service = [];
+	
+	document.getElementById('offerings').value = service;
+	items = [];
+	
+	document.getElementById('item').innerHTML = items;
+	
+	x = 0;
+	document.getElementById("count").innerHTML = x;
+	
+	document.getElementById('serviceCatalog').value = "";
+	return;
+}
+
+//
+function catalogPop() {
+	serviceCat.pop();
+	document.getElementById('offerCat').innerHTML = serviceCat;
+	return;
+}
+
+//
+function serve() {
+	service.push("</br>" +
+		"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</br>" +
+		"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;@type&quot;: &quot;Offer&quot;,</br>" +
+		"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;itemOffered&quot;: {</br>" +
+		"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;@type&quot;: &quot;Service&quot;,</br>" +
+		"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;" +
+		document.getElementById('serviceName').value +
+		"&quot;,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;url&quot;: &quot;" +
+		document.getElementById('serviceURL').value +
+		"&quot;</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</br>" +
+		"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}");
+
+	document.getElementById('offerings').value = service;
+
+	x++;
+
+	document.getElementById("count").innerHTML = x;
+	items.push(document.getElementById('serviceName').value.toString() + "</br>");
+	document.getElementById('item').innerHTML = items.join('');
+	document.getElementById('serviceName').value = "";
+	document.getElementById('serviceURL').value = "";
+	return;
+}
+
+//
+function servePop() {
+	service.pop();
+	items.pop();
+	if (x !== 0){
+	x--;
+	document.getElementById("count").innerHTML = x;
+	}
+	document.getElementById('offerings').value = service;
+	document.getElementById('item').innerHTML = items.join('');
+	return;
+}
+
+//
+function select(id) {
+	window.getSelection()
+	.selectAllChildren(
+	document.getElementById("schema")
+	);
+	return;
+}
+</script>
+</body>
+</html>

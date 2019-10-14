@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!--Developed by John L Nguyen-->
+<head>
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="sesameSchema.css">
+<title>Image Schema</title>
+</head>
+<body>
+
+<!--Schema Suite Navigation-->
+<ul class="nav">
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/practiceSchema.html">Practice</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/serviceSchema.html">Services</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/reviewSchema.html">Testimonials</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/doctorSchema.html">Doctor</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/meetTheTeamSchema.html">Meet The Team</a></li>
+	<li><a href="/projects/HTML_CSS_JS/sesameSchema/imageSchema.html" style="font-weight: bold; color: blue;">Images</a></li>
+</ul>
+<div class="row">
+	<div class="col container">
+	
+		<!--Form to input information to be translated into JSON-LD schema-->
+		<table>
+			<tr>
+				<th>Image Object Schema</th>
+			</tr>
+			<tr>
+				<td>Author Name:</td>
+				<td><input type="text" id="author" autocomplete="off" placeholder="Image Owners Name" size="45"></td>
+			</tr>
+			<tr>
+				<td>Image Location:&nbsp;&nbsp;&nbsp;</td>
+				<td><input type="text" id="location" autocomplete="off" placeholder="ex. Seattle, WA" size="45"></td>
+			</tr>
+			<tr>
+				<td>Image URL:</td>
+				<td><input type="text" id="imageurl" autocomplete="off" placeholder="Enter Image Link" size="45"></td>
+			</tr>
+			<tr>
+				<td>Date Published:</td>
+				<td><input type="text" id="published" autocomplete="off" placeholder="Enter Date Image Was Uploaded yyyy-mm-dd" size="45"></td>
+			</tr>
+			<tr>
+				<td>Description:</td>
+				<td><textarea rows="4" cols="47" id="description" autocomplete="off" placeholder="Enter Description of the Image"></textarea></td>
+			</tr>
+			<tr>
+				<td>Image Name:</td>
+				<td><input type="text" id="imagename" autocomplete="off" placeholder="Enter The Name of The Image" size="45"></td>
+			</tr>
+		</table>
+		
+		</br>
+		<!---->
+		<button onclick="schemaAdd();">Add Image</button>&nbsp;<button onclick="schemaTake();">Remove Image</button>&nbsp;<button onclick="none();">Clear</button></br>
+		
+		<!---->
+		<strong>Select:</strong> <span style="color: #007bff;" onclick="select(id);">Schema</span></br>
+		<a href="https://search.google.com/structured-data/testing-tool">JSON-LD Validator</a>(F5/Refresh to clear form)
+	</div>
+	<div id="schema" class="col container" onclick="select(id);">
+	
+		<!--Generated JSON-LD Schema-->
+		&lt;script type="application/ld+json"&gt;</br>
+		{</br>
+		&nbsp;&nbsp;&nbsp;&quot;@context&quot;: &quot;http://schema.org/&quot;,</br>
+		&nbsp;&nbsp;&nbsp;&quot;@graph&quot;: [<span id="spell"></span>
+		]</br>
+		}</br>
+		&lt;/script&gt;
+	</div>
+</div>
+<script>
+var imaAdd = [];
+//
+function schemaAdd() {
+	imaAdd.push("{</br>&nbsp;&nbsp;&nbsp;&quot;@type&quot;: &quot;ImageObject&quot;,</br>&nbsp;&nbsp;&nbsp;&quot;author&quot;: {</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;@type&quot;: &quot;Person&quot;,</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;" +
+		document.getElementById("author").value.toString() +
+		"&quot;</br>&nbsp;&nbsp;&nbsp;},</br>&nbsp;&nbsp;&nbsp;&quot;contentLocation&quot;: &quot;" +
+		document.getElementById("location").value.toString() +
+		"&quot;,</br>&nbsp;&nbsp;&nbsp;&quot;contentUrl&quot;: &quot;" +
+		document.getElementById("imageurl").value.toString() +
+		"&quot;,</br>&nbsp;&nbsp;&nbsp;&quot;datePublished&quot;: &quot;" +
+		document.getElementById("published").value.toString() +
+		"&quot;,</br>&nbsp;&nbsp;&nbsp;&quot;description&quot;: &quot;" +
+		document.getElementById("description").value.toString() +
+		"&quot;,</br>&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;" +
+		document.getElementById("imagename").value.toString() +
+		"&quot;</br>&nbsp;&nbsp;&nbsp;}");
+	document.getElementById("spell").innerHTML = imaAdd;
+	return;
+}
+
+//
+function schemaTake() {
+	imaAdd.pop();
+	document.getElementById("spell").innerHTML = imaAdd;
+	return;
+}
+
+//
+function none(){
+	document.getElementById('author').value = '';
+	document.getElementById('location').value = '';
+	document.getElementById('imageurl').value = '';
+	document.getElementById('published').value = '';
+	document.getElementById('description').value = '';
+	document.getElementById('imagename').value = '';
+}
+
+//
+function select(id) {
+	window.getSelection()
+	.selectAllChildren(
+		document.getElementById("schema") 
+	);
+}
+</script>
+</body>
+</html>
